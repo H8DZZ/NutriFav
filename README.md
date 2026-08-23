@@ -14,7 +14,7 @@
 
 ---
 
-## 📸 Capturas de Pantalla
+## Capturas de Pantalla
 
 <div align="center">
   <img src="screenshots/dashboard.png" width="45%" alt="Dashboard" />
@@ -27,17 +27,17 @@
 
 ---
 
-## 🚀 Características Principales
+## Características Principales
 
-- 👤 **Gestión de Pacientes**: Expediente clínico completo (datos personales, hábitos, antecedentes).
-- 📊 **Seguimiento Antropométrico**: Registro de peso, IMC, pliegues, circunferencias y progreso visual con gráficos.
-- 🍽️ **Plan Alimenticio**: Editor de comidas por día con macros, etiquetas y generación de PDF del plan semanal.
-- 📸 **Galería de Fotos**: Subida y comparativa de fotos de progreso (Frente/Perfil).
-- 📋 **Tareas**: Sistema de tareas pendientes (Clínicas, Administrativas, Seguimiento).
+-  **Gestión de Pacientes**: Expediente clínico completo (datos personales, hábitos, antecedentes).
+-  **Seguimiento Antropométrico**: Registro de peso, IMC, pliegues, circunferencias y progreso visual con gráficos.
+-  **Plan Alimenticio**: Editor de comidas por día con macros, etiquetas y generación de PDF del plan semanal.
+-  **Galería de Fotos**: Subida y comparativa de fotos de progreso (Frente/Perfil).
+-  **Tareas**: Sistema de tareas pendientes (Clínicas, Administrativas, Seguimiento).
 
 ---
 
-## 🛠️ Stack Tecnológico
+##  Stack Tecnológico
 
 - **Frontend**: HTML5, CSS3 (Vanilla), JavaScript (ES6+)
 - **Framework de Escritorio**: Electron
@@ -47,7 +47,7 @@
 
 ---
 
-## ⚙️ Instalación y Ejecución Local
+##  Instalación y Ejecución Local
 
 Sigue estos pasos para tener el proyecto corriendo en tu máquina:
 
@@ -57,7 +57,9 @@ Sigue estos pasos para tener el proyecto corriendo en tu máquina:
    cd nutrifav
 
 2. **Instalar dependencias**
+   
 npm install
 
 3. **Ejecutar la aplicación**
+   
 npm start
