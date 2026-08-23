@@ -174,6 +174,8 @@ git clone https://github.com/H8DZZ/NutriFav.git
 cd nutrifav
 
 # Instalar dependencias
+npm install electron electron-builder --save-dev
+
 npm install
 
 # Ejecutar la aplicación
