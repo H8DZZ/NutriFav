@@ -1,0 +1,307 @@
+<div class="container">
+
+    <div class="page-header">
+        <div>
+            <h2 class="page-title">Registro de Seguimiento</h2>
+            <p class="page-subtitle">Sesión de control - <span id="fechaActual">—</span></p>
+        </div>
+        <div class="header-actions">
+            <a href="#" data-view="seguimiento" data-id="" class="btn btn-secondary" id="btnCancelar">
+                <span class="material-symbols-outlined">arrow_back</span>
+                Cancelar
+            </a>
+            <button class="btn btn-primary" id="btnGuardarRegistro">
+                <span class="material-symbols-outlined">save</span>
+                Guardar Registro
+            </button>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+
+        <div class="main-column">
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined card-icon">straighten</span>
+                    <h3 class="card-title">Datos Generales y Medidas Antropométricas</h3>
+                </div>
+
+                <div class="form-grid-3">
+                    <div class="form-group">
+                        <label class="campo-label">Paciente</label>
+                        <input type="text" class="campo-input" id="inputPaciente" placeholder="Nombre del paciente" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="campo-label">Fecha</label>
+                        <input type="date" class="campo-input" id="fechaRegistro">
+                    </div>
+                    <div class="form-group">
+                        <label class="campo-label">Edad (años)</label>
+                        <input type="number" class="campo-input" id="inputEdad" placeholder="0" min="0">
+                    </div>
+                </div>
+
+                <div class="form-grid-3" style="margin-top: 16px;">
+                    <div class="form-group">
+                        <label class="campo-label">Peso (kg)</label>
+                        <div class="campo-input-con-sufijo">
+                            <input type="number" id="inputPeso" step="0.1" placeholder="0.0" class="campo-input">
+                            <span class="sufijo">kg</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="campo-label">Talla (cm)</label>
+                        <div class="campo-input-con-sufijo">
+                            <input type="number" id="inputTalla" placeholder="0" class="campo-input">
+                            <span class="sufijo">cm</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="campo-label">IMC</label>
+                        <div class="valor-calculado">
+                            <span id="bmi-value">—</span>
+                            <span class="badge-clasificacion" id="bmi-clasificacion">—</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-grid-2" style="margin-top: 16px;">
+                    <div class="form-group">
+                        <label class="campo-label">Peso habitual (kg)</label>
+                        <div class="campo-input-con-sufijo">
+                            <input type="number" id="inputPesoHabitual" step="0.1" placeholder="0.0" class="campo-input">
+                            <span class="sufijo">kg</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined card-icon">body_system</span>
+                    <h3 class="card-title">Composición Corporal</h3>
+                </div>
+
+                <div class="form-grid-4">
+                    <div class="form-group">
+                        <label class="campo-label">% Grasa</label>
+                        <div class="campo-input-con-sufijo">
+                            <input type="number" id="inputGrasa" step="0.1" placeholder="0.0" class="campo-input">
+                            <span class="sufijo">%</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="campo-label">% Músculo</label>
+                        <div class="campo-input-con-sufijo">
+                            <input type="number" id="inputMusculo" step="0.1" placeholder="0.0" class="campo-input">
+                            <span class="sufijo">%</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="campo-label">Masa ósea (kg)</label>
+                        <div class="campo-input-con-sufijo">
+                            <input type="number" id="inputMasaOsea" step="0.1" placeholder="0.0" class="campo-input">
+                            <span class="sufijo">kg</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="campo-label">Grasa visceral</label>
+                        <div class="campo-input-con-sufijo">
+                            <input type="number" id="inputGrasaVisceral" step="0.1" placeholder="0.0" class="campo-input">
+                            <span class="sufijo">nivel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined card-icon">straighten</span>
+                    <h3 class="card-title">Circunferencias (cm)</h3>
+                </div>
+
+                <div class="grupo-medidas">
+                    <div class="fila-medidas">
+                        <div class="form-group">
+                            <label class="campo-label">Cuello</label>
+                            <input type="number" id="inputCuello" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                        <div class="form-group">
+                            <label class="campo-label">Pecho</label>
+                            <input type="number" id="inputPecho" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                        <div class="form-group">
+                            <label class="campo-label">Bícep relajación</label>
+                            <input type="number" id="inputBicepsRelajado" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                        <div class="form-group">
+                            <label class="campo-label">Bícep contracción</label>
+                            <input type="number" id="inputBicepsContraido" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                    </div>
+                    <div class="fila-medidas">
+                        <div class="form-group">
+                            <label class="campo-label">Cintura</label>
+                            <input type="number" id="inputCintura" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                        <div class="form-group">
+                            <label class="campo-label">Cadera</label>
+                            <input type="number" id="inputCadera" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                        <div class="form-group">
+                            <label class="campo-label">Glúteo</label>
+                            <input type="number" id="inputGluteo" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                        <div class="form-group">
+                            <label class="campo-label">Muslo</label>
+                            <input type="number" id="inputMuslo" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                    </div>
+                    <div class="fila-medidas">
+                        <div class="form-group">
+                            <label class="campo-label">Cuádricep relajación</label>
+                            <input type="number" id="inputCuadricepRelajado" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                        <div class="form-group">
+                            <label class="campo-label">Cuádricep contracción</label>
+                            <input type="number" id="inputCuadricepContraido" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                        <div class="form-group">
+                            <label class="campo-label">Pantorrilla</label>
+                            <input type="number" id="inputPantorrilla" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined card-icon">ruler</span>
+                    <h3 class="card-title">Pliegues (mm)</h3>
+                </div>
+
+                <div class="grupo-medidas">
+                    <div class="fila-medidas">
+                        <div class="form-group">
+                            <label class="campo-label">Bicipital</label>
+                            <input type="number" id="inputPliegueBicipital" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                        <div class="form-group">
+                            <label class="campo-label">Tricipital</label>
+                            <input type="number" id="inputPliegueTricipital" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                        <div class="form-group">
+                            <label class="campo-label">Subescapular</label>
+                            <input type="number" id="inputPliegueSubescapular" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                    </div>
+                    <div class="fila-medidas">
+                        <div class="form-group">
+                            <label class="campo-label">Supraileaco</label>
+                            <input type="number" id="inputPliegueSupraileaco" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                        <div class="form-group">
+                            <label class="campo-label">Abdominal</label>
+                            <input type="number" id="inputPliegueAbdominal" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                        <div class="form-group">
+                            <label class="campo-label">Muslo</label>
+                            <input type="number" id="inputPliegueMuslo" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                    </div>
+                    <div class="fila-medidas">
+                        <div class="form-group">
+                            <label class="campo-label">Pantorrilla</label>
+                            <input type="number" id="inputPlieguePantorrilla" step="0.1" class="campo-input" placeholder="0.0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined card-icon">notes</span>
+                    <h3 class="card-title">Observaciones Clínicas</h3>
+                </div>
+                <div class="form-group">
+                    <textarea class="campo-input" id="inputObservaciones" rows="6" placeholder="Escriba aquí los comentarios sobre la evolución..."></textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="side-column">
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined card-icon">favorite</span>
+                    <h3 class="card-title">Signos Vitales</h3>
+                </div>
+                <div class="vitals-group">
+                    <div class="form-group">
+                        <label class="campo-label">Presión Arterial</label>
+                        <div class="blood-pressure-inputs">
+                            <input type="number" class="campo-input" id="inputPresionSistolica" placeholder="120" style="width:70px; text-align:center;">
+                            <span class="separator">/</span>
+                            <input type="number" class="campo-input" id="inputPresionDiastolica" placeholder="80" style="width:70px; text-align:center;">
+                        </div>
+                        <p class="input-caption">Sistólica / Diastólica (mmHg)</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="campo-label">Frecuencia Cardíaca</label>
+                        <div class="campo-input-con-sufijo">
+                            <input type="number" id="inputFrecuenciaCardiaca" class="campo-input" placeholder="72">
+                            <span class="sufijo">lpm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-accent" id="progresoCard">
+                <h4 class="card-accent-title">Progreso del Paciente</h4>
+                <div class="progress-stats" id="progresoStats">
+                    <div class="stat-row">
+                        <span class="stat-label">Peso Inicial</span>
+                        <span class="stat-value" id="pesoInicialDisplay">—</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Peso Actual</span>
+                        <span class="stat-value" id="pesoActualDisplay">—</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Diferencia</span>
+                        <span class="stat-value highlight-stat" id="diferenciaPesoDisplay">—</span>
+                    </div>
+                </div>
+                <div class="goal-progress">
+                    <p class="goal-label">Meta de Peso</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progresoMetaFill" style="width: 0%;"></div>
+                    </div>
+                    <p class="progress-caption" id="progresoMetaCaption">0% completado</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header space-between">
+                    <h3 class="card-title">Fotos de Control</h3>
+                    <a href="#" data-view="fotos" data-id="" class="link-btn" id="linkFotos">Ver todas</a>
+                </div>
+                <div class="photo-grid">
+                    <div class="photo-upload-box" id="uploadFrente">
+                        <span class="material-symbols-outlined icon-lg">add_a_photo</span>
+                        <span class="photo-label">Frente</span>
+                    </div>
+                    <div class="photo-upload-box" id="uploadPerfil">
+                        <span class="material-symbols-outlined icon-lg">add_a_photo</span>
+                        <span class="photo-label">Perfil</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

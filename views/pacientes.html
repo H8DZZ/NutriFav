@@ -1,0 +1,51 @@
+
+
+<section class="welcome-section">
+    <div class="welcome-text">
+        <h1 class="welcome-heading">Listado de Pacientes</h1>
+        <p class="welcome-subtext">Gestiona y realiza seguimiento a tus pacientes.</p>
+    </div>
+    <div class="action-buttons">
+        <button class="btn btn-primary" id="btnNuevoPaciente">
+            <span class="material-symbols-outlined">person_add</span>
+            Nuevo Paciente
+        </button>
+    </div>
+</section>
+
+<div class="header-search" style="max-width: 400px; margin-bottom: 16px;">
+    <span class="material-symbols-outlined search-icon" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-muted);">search</span>
+    <input type="text" class="search-input" id="searchPatient" placeholder="Buscar pacientes por nombre o estado..." style="padding-left:40px;width:100%;" />
+</div>
+
+
+</section>
+
+<section class="card table-card">
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>PACIENTE</th>
+                    <th>ID/EXPEDIENTE</th>
+                    <th>ÚLTIMA CONSULTA</th>
+                    <th>ESTADO</th>
+                    <th class="text-right">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody id="patientsBody">
+            </tbody>
+        </table>
+
+        <div id="noResultsMessage" style="display: none; padding: 32px 24px; text-align: center; color: var(--text-muted); font-weight: 600;">
+            <span class="material-symbols-outlined" style="font-size: 32px; display: block; margin-bottom: 8px;">search_off</span>
+            No se encontraron pacientes que coincidan con el término de búsqueda.
+        </div>
+    </div>
+
+    <div class="table-pagination">
+        <p class="pagination-info">Mostrando <strong id="visibleCount">0</strong> pacientes</p>
+        <div class="pagination-controls" id="paginationControls">
+        </div>
+    </div>
+</section>

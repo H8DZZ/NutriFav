@@ -1,0 +1,180 @@
+<div class="page-container">
+
+    <div class="page-header">
+        <div>
+            <nav class="breadcrumb">
+                <a href="#" data-view="planes">Planes</a>
+                <span class="material-symbols-outlined">chevron_right</span>
+                <a href="#" data-view="pacientes" id="breadcrumbPaciente">Paciente</a>
+            </nav>
+            <div style="display: flex; align-items: center; gap: 12px; margin-top: 4px; flex-wrap: wrap;">
+                <h2 class="page-title" style="margin:0;">Editor de Plan Semanal</h2>
+                <input type="text" class="nombre-dieta-input" id="nombreDieta" value="Nuevo Plan" placeholder="Nombre de la dieta">
+                <div class="status-container" id="statusContainerPlan">
+                    <span class="status-display status-chip-active" id="estadoDisplay" data-status="Activo">Activo</span>
+                    <div class="status-select" id="statusSelectPlan">
+                        <button class="option" data-value="Activo">Activo</button>
+                        <button class="option" data-value="Completado">Completado</button>
+                        <button class="option" data-value="Cancelado">Cancelado</button>
+                    </div>
+                </div>
+            </div>
+            <p class="page-description" id="descripcionPlan">Ajusta las comidas y horarios para el plan.</p>
+        </div>
+        <div>
+            <button class="btn btn-secondary" id="btnGenerarPDF">Vista previa PDF</button>
+            <button class="btn btn-primary" id="btnGuardarPlan"><span class="material-symbols-outlined">save</span> Guardar Plan</button>
+        </div>
+    </div>
+
+    <div class="summary-banner">
+        <div class="summary-content">
+            <div class="summary-title-section">
+                <h4 class="summary-title">Resumen del Día</h4>
+                <p class="summary-subtitle" id="diaActualLabel">Lunes</p>
+            </div>
+            <div class="summary-progress-section">
+                <div class="progress-header">
+                    <span>Calorías Totales</span>
+                    <div class="progress-badge" id="btnEditarCalorias">
+                        <span id="caloriasDisplay">0 / 1,600 kcal</span>
+                        <span class="material-symbols-outlined" style="font-size:16px;">edit</span>
+                    </div>
+                </div>
+                <div class="progress-bar-bg"><div class="progress-bar-fill" id="caloriasProgress" style="width:0%;"></div></div>
+            </div>
+            <div class="macros-grid">
+                <div class="macro-box"><p class="macro-label">Proteína</p><p class="macro-value" id="totalProteinas">0g</p></div>
+                <div class="macro-box"><p class="macro-label">Carbs</p><p class="macro-value" id="totalCarbohidratos">0g</p></div>
+                <div class="macro-box"><p class="macro-label">Grasas</p><p class="macro-value" id="totalGrasas">0g</p></div>
+            </div>
+        </div>
+        <div class="abstract-bg-shape"></div>
+    </div>
+
+    <div class="day-selector hide-scrollbar" id="daySelector">
+        <button class="day-btn active" data-dia="0">Lunes</button>
+        <button class="day-btn" data-dia="1">Martes</button>
+        <button class="day-btn" data-dia="2">Miércoles</button>
+        <button class="day-btn" data-dia="3">Jueves</button>
+        <button class="day-btn" data-dia="4">Viernes</button>
+        <button class="day-btn" data-dia="5">Sábado</button>
+        <button class="day-btn" data-dia="6">Domingo</button>
+    </div>
+
+    <div class="meals-container" id="mealsContainer"></div>
+
+    <div class="add-button-container">
+        <button class="add-meal-btn" id="btnAddMeal"><span class="material-symbols-outlined">add</span> Añadir otra comida o suplemento</button>
+    </div>
+
+</div>
+
+<div class="modal-backdrop" id="modalEditarComida">
+    <div class="modal-container" style="max-width: 600px;">
+        <div class="modal-header">
+            <div class="modal-title-group">
+                <div class="modal-icon-badge"><span class="material-symbols-outlined">restaurant</span></div>
+                <h2 id="modalComidaTitulo">Nueva Comida</h2>
+            </div>
+            <button class="modal-close-btn" id="modalEditarClose"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <form id="formEditarComida">
+            <div class="modal-body">
+                <input type="hidden" id="editComidaId" value="">
+                <div class="form-group">
+                    <label>Nombre de la comida</label>
+                    <input type="text" id="mealName" class="form-input" placeholder="Ej: Desayuno, Merienda, Cena..." required>
+                </div>
+                <div class="form-group">
+                    <label>Hora</label>
+                    <input type="time" id="mealTime" class="form-input" value="08:00">
+                </div>
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea id="mealDesc" class="form-input" rows="2" placeholder="Detalles de la comida..."></textarea>
+                </div>
+                <div class="grid-3-col">
+                    <div class="form-group">
+                        <label>Proteínas (g)</label>
+                        <input type="number" id="editProteinas" class="form-input" value="0" min="0" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Carbohidratos (g)</label>
+                        <input type="number" id="editCarbohidratos" class="form-input" value="0" min="0" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Grasas (g)</label>
+                        <input type="number" id="editGrasas" class="form-input" value="0" min="0" step="1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Icono</label>
+                    <div class="icon-selector" id="iconSelector">
+                        <button type="button" class="icon-option active" data-icon="restaurant"><span class="material-symbols-outlined">restaurant</span></button>
+                        <button type="button" class="icon-option" data-icon="coffee"><span class="material-symbols-outlined">coffee</span></button>
+                        <button type="button" class="icon-option" data-icon="lunch_dining"><span class="material-symbols-outlined">lunch_dining</span></button>
+                        <button type="button" class="icon-option" data-icon="dinner_dining"><span class="material-symbols-outlined">dinner_dining</span></button>
+                        <button type="button" class="icon-option" data-icon="bakery_dining"><span class="material-symbols-outlined">bakery_dining</span></button>
+                        <button type="button" class="icon-option" data-icon="icecream"><span class="material-symbols-outlined">icecream</span></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Color</label>
+                    <div class="color-selector" id="colorSelector">
+                        <button type="button" class="color-option active" data-color="primary" style="background-color:#4a633b;"></button>
+                        <button type="button" class="color-option" data-color="secondary" style="background-color:#e67e22;"></button>
+                        <button type="button" class="color-option" data-color="accent" style="background-color:#8e44ad;"></button>
+                        <button type="button" class="color-option" data-color="danger" style="background-color:#c0392b;"></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Etiquetas</label>
+                    <div class="tag-container" id="tagContainer">
+                        <input type="text" id="newTagInput" class="form-input" placeholder="Escribe una etiqueta y presiona Enter" style="flex:1; min-width:120px;">
+                        <button type="button" class="btn-add-tag" id="btnAddTag">Añadir</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-modal-secondary" id="btnCancelarEditar">Cancelar</button>
+                <button type="submit" class="btn-modal-primary">Guardar Comida</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-backdrop" id="modalEditarCalorias">
+    <div class="modal-container-confirm">
+        <div class="modal-confirm-header">
+            <h3 class="modal-confirm-title">Editar Meta Calórica</h3>
+            <p class="modal-confirm-desc">Establece el objetivo de calorías para el plan.</p>
+        </div>
+        <form id="formEditarCalorias">
+            <div class="modal-body" style="padding:16px 24px;">
+                <div class="form-group">
+                    <label>Calorías diarias</label>
+                    <input type="number" id="caloriasInput" class="form-input" value="1600" min="500" step="50">
+                </div>
+            </div>
+            <div class="modal-confirm-footer">
+                <button type="button" class="btn-modal-secondary" id="btnCancelarCalorias">Cancelar</button>
+                <button type="submit" class="btn-modal-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-backdrop" id="modalConfirmacionEliminarComida">
+    <div class="modal-container-confirm">
+        <div class="modal-confirm-header">
+            <div class="modal-confirm-icon"><span class="material-symbols-outlined">warning</span></div>
+            <h3 class="modal-confirm-title">¿Eliminar comida?</h3>
+            <p class="modal-confirm-desc" id="modalConfirmEliminarText">Esta acción no se puede deshacer.</p>
+        </div>
+        <div class="modal-confirm-footer">
+            <button class="btn-modal-secondary" id="btnCancelarEliminarComida">Cancelar</button>
+            <button class="btn-modal-danger" id="btnConfirmarEliminarComida">Eliminar</button>
+        </div>
+    </div>
+</div>

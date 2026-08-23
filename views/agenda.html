@@ -1,0 +1,102 @@
+<div class="page-header flex-between">
+    <div>
+        <h2 id="pageTitle" class="page-title">Agenda Anual</h2>
+        <p class="page-subtitle">Gestión de consultas y seguimiento de pacientes</p>
+    </div>
+    <div class="header-actions">
+        <div class="view-toggle">
+            <button id="btnViewYear" class="toggle-btn active">Mes</button>
+            <button id="btnViewMonth" class="toggle-btn">Semana</button>
+        </div>
+        <div class="select-wrapper">
+    <select class="form-select" id="filtroNutriologo">
+        <option value="todos">Todos los Nutriólogos</option>
+    </select>
+    <span class="material-symbols-outlined select-arrow">keyboard_arrow_down</span>
+</div>
+        <button class="btn btn-primario" id="btnNuevaCita">
+            <span class="material-symbols-outlined">add</span>
+            Nueva Cita
+        </button>
+    </div>
+</div>
+
+<div class="grid-layout agenda-grid">
+    <div class="card calendar-card">
+        <div id="yearView" class="view-section">
+            <div class="calendar-toolbar">
+                <div class="toolbar-title-group">
+                    <h3 id="yearLabel" class="calendar-year">2024</h3>
+                    <div class="nav-buttons">
+                        <button id="yearPrev" class="icon-btn-sm"><span class="material-symbols-outlined">chevron_left</span></button>
+                        <button id="yearNext" class="icon-btn-sm"><span class="material-symbols-outlined">chevron_right</span></button>
+                    </div>
+                </div>
+                <div class="today-indicator">
+                    <span class="pulse-dot"></span>
+                    <span class="today-text" id="todayLabel">HOY: --</span>
+                </div>
+                <div class="legend-group">
+                    <div class="legend-item"><span class="dot confirmada"></span><span class="legend-label">CONFIRMADA</span></div>
+                    <div class="legend-item"><span class="dot pendiente"></span><span class="legend-label">INASISTENCIA</span></div>
+                    <div class="legend-item"><span class="dot atendida"></span><span class="legend-label">ATENDIDA</span></div>
+                    <div class="legend-item"><span class="dot cancelada"></span><span class="legend-label">CANCELADA</span></div>
+                </div>
+            </div>
+            <div id="yearGrid" class="year-grid">
+            </div>
+        </div>
+
+        <div id="monthView" class="view-section hidden">
+            <div class="calendar-toolbar">
+                <div class="toolbar-title-group">
+                    <h3 id="currentMonthLabel" class="calendar-year">Octubre 2024</h3>
+                    <div class="nav-buttons">
+                        <button id="monthPrev" class="icon-btn-sm"><span class="material-symbols-outlined">chevron_left</span></button>
+                        <button id="monthNext" class="icon-btn-sm"><span class="material-symbols-outlined">chevron_right</span></button>
+                    </div>
+                </div>
+                <div class="legend-group">
+                    <div class="legend-item"><span class="dot confirmada"></span><span class="legend-label">CONFIRMADA</span></div>
+                    <div class="legend-item"><span class="dot pendiente"></span><span class="legend-label">INASISTENCIA</span></div>
+                    <div class="legend-item"><span class="dot atendida"></span><span class="legend-label">ATENDIDA</span></div>
+                    <div class="legend-item"><span class="dot cancelada"></span><span class="legend-label">CANCELADA</span></div>
+                </div>
+            </div>
+            <div class="month-full-grid header-grid">
+                <div class="day-col-head">LUN</div>
+                <div class="day-col-head">MAR</div>
+                <div class="day-col-head">MIÉ</div>
+                <div class="day-col-head">JUE</div>
+                <div class="day-col-head">VIE</div>
+                <div class="day-col-head">SÁB</div>
+                <div class="day-col-head sun">DOM</div>
+            </div>
+            <div id="monthGrid" class="month-full-grid body-grid">
+            </div>
+        </div>
+    </div>
+
+    <aside class="agenda-sidebar-bento">
+        <div class="stats-mini-container">
+            <div class="card card-estadistica">
+                <span class="material-symbols-outlined icon-stat">event_available</span>
+                <div class="stat-num" id="citasHoyStat">0</div>
+                <div class="stat-label">Citas Totales Hoy</div>
+            </div>
+            <div class="card card-estadistica">
+                <span class="material-symbols-outlined icon-stat">pending_actions</span>
+                <div class="stat-num" id="citasPendientesStat">0</div>
+                <div class="stat-label">Citas Pendientes</div>
+            </div>
+        </div>
+        <div class="card card-seccion">
+            <div class="card-header flex-between">
+                <h3 class="card-title"><span class="material-symbols-outlined">schedule</span> Próximas Citas</h3>
+                <a href="#" data-view="citas" class="link-ver-todas">Ver todas</a>
+            </div>
+            <div class="lista-items" id="proximasCitasList">
+            </div>
+        </div>
+    </aside>
+</div>

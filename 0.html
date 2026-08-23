@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NutriFav · Login</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="0.css">
+</head>
+<body>
+    <div id="blob-top" class="fixed-blob top-blob animate-pulse"></div>
+    <div id="blob-bottom" class="fixed-blob bottom-blob"></div>
+
+    <div class="tonal-gradient min-h-screen flex-center p-6">
+        <main class="main-container">
+            <div class="logo-area">
+                <div class="logo-box ambient-lift">
+                    <span class="material-symbols-outlined icon-logo">restaurant</span>
+                </div>
+                <h1 class="font-headline-xl text-primary tracking-tight">NutriFav</h1>
+            </div>
+
+            <div class="login-card ambient-lift">
+                <div class="card-header">
+                    <h2 class="font-headline-lg text-primary">Bienvenido</h2>
+                </div>
+
+                <form id="loginForm" class="space-y-6">
+                    <div class="space-y-2">
+                        <label class="font-label-caps text-on-surface-variant ml-1" for="email">USUARIO</label>
+                        <div class="relative flex items-center input-focus-ring border border-outline-variant rounded-2xl bg-surface-container-low transition-all">
+                            <span class="material-symbols-outlined absolute left-5 icon-form">person</span>
+                            <input id="email" type="text" class="w-full bg-transparent py-4 pl-14 pr-5 outline-none font-body-md text-on-surface placeholder-text border-none focus-ring-0" placeholder="Ej: admin" required value="" />
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center px-1">
+                            <label class="font-label-caps text-on-surface-variant" for="password">CONTRASEÑA</label>
+
+                        </div>
+                        <div class="relative flex items-center input-focus-ring border border-outline-variant rounded-2xl bg-surface-container-low transition-all">
+                            <span class="material-symbols-outlined absolute left-5 icon-form">lock</span>
+                            <input id="password" type="password" class="w-full bg-transparent py-4 pl-14 pr-14 outline-none font-body-md text-on-surface placeholder-text border-none focus-ring-0" placeholder="••••••••" required value="" />
+                            <button type="button" id="togglePassword" class="absolute right-5 flex items-center">
+                                <span class="material-symbols-outlined icon-form" id="visibilityIcon">visibility</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit" id="loginBtn" class="w-full bg-primary text-on-primary font-headline-md py-4 rounded-2xl ambient-lift btn-press shadow-btn transition-all hover-btn">Iniciar Sesión</button>
+                    </div>
+                    <div id="loginError" style="color:#c0392b; text-align:center; font-size:14px; display:none; margin-top:12px;">Credenciales incorrectas. Inténtalo de nuevo.</div>
+                </form>
+
+                <div class="relative my-10"><div class="absolute inset-0 flex items-center"><div class="divider-line"></div></div></div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+    const { ipcRenderer } = require('electron');
+
+    const blobTop = document.getElementById('blob-top');
+    const blobBottom = document.getElementById('blob-bottom');
+    document.addEventListener('mousemove', function(e) {
+        const x = (e.clientX / window.innerWidth) - 0.5;
+        const y = (e.clientY / window.innerHeight) - 0.5;
+        if (blobTop) blobTop.style.transform = 'translate(' + (x * 30) + 'px, ' + (y * 30) + 'px)';
+        if (blobBottom) blobBottom.style.transform = 'translate(' + (x * -45) + 'px, ' + (y * -45) + 'px)';
+    });
+
+    const passwordInput = document.getElementById('password');
+    const toggleBtn = document.getElementById('togglePassword');
+    const visibilityIcon = document.getElementById('visibilityIcon');
+    if (toggleBtn && passwordInput && visibilityIcon) {
+        toggleBtn.addEventListener('click', function() {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            visibilityIcon.textContent = isPassword ? 'visibility_off' : 'visibility';
+        });
+    }
+
+    const form = document.getElementById('loginForm');
+    const loginBtn = document.getElementById('loginBtn');
+    const errorDiv = document.getElementById('loginError');
+
+    if (form) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const username = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!username || !password) {
+                errorDiv.textContent = 'Completa todos los campos.';
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            loginBtn.textContent = 'Cargando...';
+            loginBtn.disabled = true;
+            errorDiv.style.display = 'none';
+
+            try {
+                const result = await ipcRenderer.invoke('login', { email: username, password });
+                if (result.success) {
+
+                } else {
+                    errorDiv.textContent = result.error || 'Credenciales incorrectas.';
+                    errorDiv.style.display = 'block';
+                    loginBtn.textContent = 'Iniciar Sesión';
+                    loginBtn.disabled = false;
+                }
+            } catch (err) {
+                console.error('Error en login:', err);
+                errorDiv.textContent = 'Error al conectar con el servidor.';
+                errorDiv.style.display = 'block';
+                loginBtn.textContent = 'Iniciar Sesión';
+                loginBtn.disabled = false;
+            }
+        });
+    }
+</script>
+</body>
+</html>

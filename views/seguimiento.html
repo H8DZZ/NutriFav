@@ -1,0 +1,107 @@
+
+<div class="content-wrapper" id="pdfContent">
+
+    <section class="page-header">
+        <div>
+            <nav class="breadcrumbs">
+                <a href="#" data-view="pacientes">Pacientes</a>
+                <span class="material-symbols-outlined icon-sm">chevron_right</span>
+                <a href="#" id="breadcrumbPaciente">—</a>
+                <span class="material-symbols-outlined icon-sm">chevron_right</span>
+                <span class="current-page">Historial de Seguimiento</span>
+            </nav>
+            <h2 class="page-title">Historial de Seguimiento</h2>
+            <p class="page-subtitle" id="subtituloPaciente">Cargando...</p>
+        </div>
+        <div class="action-buttons">
+            <button class="btn btn-secondary" id="exportPdfBtn">
+                <span class="material-symbols-outlined icon-btn-size">download</span>
+                Exportar PDF
+            </button>
+            <a href="#" data-view="registro-seguimiento" data-id="" class="btn btn-primary" id="btnNuevoSeguimiento">
+    <span class="material-symbols-outlined">add</span>
+    Nuevo Seguimiento
+</a>
+        </div>
+    </section>
+
+    <section class="stats-grid" id="statsGrid">
+
+    </section>
+
+    <section class="filters-section" id="filtersSection">
+        <div class="filter-header">
+            <span class="material-symbols-outlined">filter_list</span>
+            <span class="filter-title">Filtrar por:</span>
+        </div>
+        <div class="date-range-group">
+            <input class="input-field input-date" type="date" id="fechaDesde">
+            <span class="separator">-</span>
+            <input class="input-field input-date" type="date" id="fechaHasta">
+        </div>
+        <div class="filter-divider"></div>
+        <select class="input-field select-filter" id="estadoFilter">
+            <option value="all">Todos los estados</option>
+            <option value="Completada">Completadas</option>
+            <option value="Pendiente">Pendientes</option>
+        </select>
+        <button class="btn-clear-filters" id="btnClearFilters">Limpiar filtros</button>
+    </section>
+
+    <section class="table-section card">
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Sesión</th>
+                        <th>Peso (kg)</th>
+                        <th>Grasa (%)</th>
+                        <th>Músculo (kg)</th>
+                        <th>Estado</th>
+                        <th class="text-right">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="sesionesBody">
+                </tbody>
+            </table>
+        </div>
+        <div class="table-pagination">
+            <p class="pagination-info" id="paginationInfo">Mostrando 0 sesiones</p>
+            <div class="pagination-controls" id="paginationControls"></div>
+        </div>
+    </section>
+
+    <section class="bottom-grid">
+        <div class="card chart-card" id="chartCard">
+            <div>
+                <h4 class="card-title">Curva de Peso</h4>
+                <p class="card-subtitle">Evolución mensual del peso corporal</p>
+            </div>
+            <div class="chart-container" id="chartContainer"></div>
+            <div class="chart-labels" id="chartLabels"></div>
+        </div>
+
+        <div class="card diet-history-card">
+            <div class="diet-header">
+                <h4 class="card-title">Historial de Dietas</h4>
+                <a href="#" data-view="prescripciones" data-id="" class="link-ver-todas" id="linkVerDietas">Ver todas</a>
+            </div>
+            <div class="diet-list" id="dietList"></div>
+        </div>
+    </section>
+<section class="card" style="margin-top: 24px;">
+    <div class="card-header" style="display:flex; justify-content:space-between; align-items:center; padding-bottom:16px; border-bottom:1px solid var(--border-subtle); margin-bottom:16px;">
+        <h4 class="card-title" style="display:flex; align-items:center; gap:8px; font-size:18px; font-weight:800; color:var(--color-primary);">
+            <span class="material-symbols-outlined" style="font-size:24px;">photo_camera</span>
+            Galería de Fotos
+        </h4>
+        <a href="#" data-view="fotos" data-id="" class="link-ver-todas" id="linkFotos" style="font-size:14px; font-weight:700; color:var(--color-primary);">
+            Ver todas
+        </a>
+    </div>
+    <div id="fotosContainer">
+    </div>
+</section>
+
+</div>

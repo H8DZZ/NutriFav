@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NutriFav · Clinical Nutrition</title>
+
+<link rel="stylesheet" href="css/all.css" />
+
+<link rel="stylesheet" href="layout-fix.css" />
+<link rel="stylesheet" href="fix.css" />
+  
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <div id="app" class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="brand-logo"><span class="material-symbols-outlined">restaurant</span></div>
+                <div><h1 class="brand-title">NutriFav</h1><p class="brand-subtitle">Clinical Nutrition</p></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" data-view="dashboard" class="nav-item active"><span class="material-symbols-outlined">dashboard</span>Dashboard</a>
+                <a href="#" data-view="agenda" class="nav-item"><span class="material-symbols-outlined">calendar_month</span>Agenda</a>
+                <a href="#" data-view="citas" class="nav-item"><span class="material-symbols-outlined">event_note</span>Citas</a>
+                <a href="#" data-view="pacientes" class="nav-item"><span class="material-symbols-outlined">people</span>Pacientes</a>
+                <a href="#" data-view="planes" class="nav-item"><span class="material-symbols-outlined">restaurant_menu</span>Planes</a>
+            </nav>
+            <footer class="sidebar-footer">
+                <div class="user-card">
+    <div class="user-avatar-placeholder" id="userAvatar">A</div>
+    <div>
+        <p class="user-name" id="userName">Administrador</p>
+        <p class="user-role">Nutriólogo</p>
+    </div>
+</div>
+                <a href="#" class="footer-nav-item logout" id="logoutBtn"><span class="material-symbols-outlined">logout</span>Cerrar Sesión</a>
+            </footer>
+        </aside>
+
+        <main class="main-wrapper" id="mainWrapper">
+            <header class="top-header">
+                <div class="header-brand"><span class="material-symbols-outlined header-icon">restaurant</span><span class="header-title">NutriFav</span></div>
+                <div style="flex:1; text-align:right; color:var(--text-muted); font-weight:500;"><span id="currentDateTime"></span></div>
+            </header>
+            <section class="content-area" id="appContent">
+                <div style="display:flex; justify-content:center; align-items:center; height:300px; color:var(--text-muted);">
+                    <span class="material-symbols-outlined" style="font-size:48px; animation: spin 1s linear infinite;">sync</span>
+                    <span style="margin-left:16px; font-weight:600;">Cargando...</span>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="modal-backdrop" id="modalNuevaCita">
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-title-group"><div class="modal-icon-badge"><span class="material-symbols-outlined">add</span></div><h2>Programar Nueva Cita</h2></div>
+                <button class="modal-close-btn" id="modalCloseBtn"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            <form id="formNuevaCita">
+                <div class="modal-body">
+                    <div class="form-group"><label>Paciente</label><div class="input-with-icon" style="position:relative;"><span class="material-symbols-outlined input-icon">person</span><input type="text" id="pacienteInput" placeholder="Buscar paciente..." autocomplete="off"><div class="autocomplete-dropdown" id="autocompleteDropdown"></div></div></div>
+                    <div class="modal-grid-2">
+                        <div class="form-group"><label>Fecha</label><div class="input-with-icon"><span class="material-symbols-outlined input-icon">calendar_month</span><input type="date" id="fechaInput" required></div></div>
+                        <div class="form-group"><label>Hora</label><div class="input-with-icon"><span class="material-symbols-outlined input-icon">schedule</span><input type="time" id="horaInput" required></div></div>
+                    </div>
+                    <div class="form-group"><label>Duración (minutos)</label><div class="duration-control"><button type="button" id="durationMinus">−</button><input type="number" id="durationInput" value="45" min="15" step="5"><button type="button" id="durationPlus">+</button></div></div>
+                    <div class="form-group"><label>Motivo / Contexto</label><div class="input-with-icon"><span class="material-symbols-outlined input-icon">description</span><textarea id="motivoTextarea" rows="3" placeholder="Motivo de la consulta..."></textarea></div></div>
+                    <div class="form-group">
+    <label>Administrador</label>
+    <div class="input-with-icon">
+        <span class="material-symbols-outlined input-icon">badge</span>
+        <select id="adminSelect">
+        </select>
+        <span class="material-symbols-outlined select-arrow-modal">expand_more</span>
+    </div>
+</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-modal-secondary" id="btnCancelarModal">Cancelar</button>
+                    <button type="submit" class="btn-modal-primary">Programar Cita</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-backdrop" id="modalConfirmacion">
+        <div class="modal-container-confirm">
+            <div class="modal-confirm-header"><div class="modal-confirm-icon"><span class="material-symbols-outlined">warning</span></div><h3 class="modal-confirm-title">¿Estás seguro?</h3><p class="modal-confirm-desc" id="modalConfirmText">Esta acción no se puede deshacer.</p></div>
+            <div class="modal-confirm-footer"><button class="btn-modal-secondary" id="btnCancelarConfirmacion">Cancelar</button><button class="btn-modal-danger" id="btnConfirmarAccion">Confirmar</button></div>
+        </div>
+    </div>
+<div class="modal-backdrop" id="modalEditarCita">
+    <div class="modal-container">
+        <div class="modal-header">
+            <div class="modal-title-group">
+                <div class="modal-icon-badge"><span class="material-symbols-outlined">edit</span></div>
+                <h2>Editar Cita</h2>
+            </div>
+            <button class="modal-close-btn" id="modalEditarCitaClose">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <form id="formEditarCita">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Fecha y Hora</label>
+                    <input type="datetime-local" id="fechaHoraInput" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Estado de la Cita</label>
+                    <div class="status-radio-group">
+                        <input type="radio" name="estado" id="estadoConfirmado" value="CONFIRMADO">
+                        <label for="estadoConfirmado"><span class="material-symbols-outlined">check_circle</span> Confirmada</label>
+                        
+                        <input type="radio" name="estado" id="estadoPendiente" value="PENDIENTE">
+                        <label for="estadoPendiente"><span class="material-symbols-outlined">pending</span> Pendiente</label>
+                        
+                        <input type="radio" name="estado" id="estadoAtendida" value="ATENDIDA">
+                        <label for="estadoAtendida"><span class="material-symbols-outlined">task_alt</span> Atendida</label>
+                        
+                        <input type="radio" name="estado" id="estadoInasistencia" value="INASISTENCIA">
+                        <label for="estadoInasistencia"><span class="material-symbols-outlined">person_off</span> Inasistencia</label>
+                        
+                        <input type="radio" name="estado" id="estadoCancelado" value="CANCELADO">
+                        <label for="estadoCancelado"><span class="material-symbols-outlined">cancel</span> Cancelada</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Motivo / Contexto</label>
+                    <textarea id="motivoInput" class="form-input" rows="3" placeholder="Motivo de la consulta..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Adjuntar Documento</label>
+                    <input type="file" id="archivoInput" class="form-input">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-modal-secondary" id="btnCancelarEditarCita">Cancelar</button>
+                <button type="submit" class="btn-modal-primary">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+    <div class="modal-backdrop" id="modalConfirmacionPaciente">
+        <div class="modal-container-confirm">
+            <div class="modal-confirm-header"><div class="modal-confirm-icon"><span class="material-symbols-outlined">warning</span></div><h3 class="modal-confirm-title">¿Eliminar paciente?</h3><p class="modal-confirm-desc" id="modalConfirmPacienteText">Esta acción no se puede deshacer.</p></div>
+            <div class="modal-confirm-footer"><button class="btn-modal-secondary" id="btnCancelarPaciente">Cancelar</button><button class="btn-modal-danger" id="btnConfirmarPaciente">Eliminar</button></div>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="taskModal">
+        <div class="modal-container">
+            <div class="modal-header"><div class="modal-title-group"><div class="modal-icon-badge"><span class="material-symbols-outlined">checklist</span></div><h2>Nueva Tarea</h2></div><button class="modal-close-btn" id="btnCloseTaskModal"><span class="material-symbols-outlined">close</span></button></div>
+            <form id="taskForm">
+                <div class="modal-body">
+                    <div class="form-group"><label>Descripción</label><textarea id="taskDesc" rows="3" placeholder="Escribe la tarea..." required></textarea></div>
+                    <div class="form-group"><label>Categoría</label><div class="category-selector-grid">
+                        <label class="category-option active"><input type="radio" name="taskCategory" value="ADMINISTRATIVA" checked><div class="category-content"><span class="material-symbols-outlined cat-icon">assignment</span><span class="cat-label">Administrativa</span></div></label>
+                        <label class="category-option"><input type="radio" name="taskCategory" value="CLÍNICA"><div class="category-content"><span class="material-symbols-outlined cat-icon">medical_services</span><span class="cat-label">Clínica</span></div></label>
+                        <label class="category-option"><input type="radio" name="taskCategory" value="SEGUIMIENTO DE PACIENTE"><div class="category-content"><span class="material-symbols-outlined cat-icon">track_changes</span><span class="cat-label">Seguimiento</span></div></label>
+                    </div></div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn-modal-secondary" id="btnCancelTaskModal">Cancelar</button><button type="submit" class="btn-modal-primary">Crear Tarea</button></div>
+            </form>
+        </div>
+    </div>
+<div class="modal-backdrop" id="modalSeleccionarPaciente">
+    <div class="modal-container" style="max-width: 600px;">
+        <div class="modal-header">
+            <div class="modal-title-group">
+                <div class="modal-icon-badge"><span class="material-symbols-outlined">person_search</span></div>
+                <h2>Seleccionar Paciente</h2>
+            </div>
+            <button class="modal-close-btn" id="modalSeleccionarPacienteClose">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Buscar paciente</label>
+                <input type="text" id="searchPacientePlan" class="form-input" placeholder="Escribe el nombre...">
+            </div>
+            <div class="lista-pacientes-plan" id="listaPacientesPlan" style="max-height: 400px; overflow-y: auto;">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-modal-secondary" id="btnCancelarSeleccionarPaciente">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop" id="modalSeleccionarPaciente">
+    <div class="modal-container" style="max-width: 600px;">
+        <div class="modal-header">
+            <div class="modal-title-group">
+                <div class="modal-icon-badge"><span class="material-symbols-outlined">person_search</span></div>
+                <h2>Seleccionar Paciente</h2>
+            </div>
+            <button class="modal-close-btn" id="modalSeleccionarPacienteClose">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Buscar paciente</label>
+                <input type="text" id="searchPacientePlan" class="form-input" placeholder="Escribe el nombre...">
+            </div>
+            <div class="lista-pacientes-plan" id="listaPacientesPlan" style="max-height: 400px; overflow-y: auto;">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-modal-secondary" id="btnCancelarSeleccionarPaciente">Cancelar</button>
+        </div>
+    </div>
+</div>
+    <script>
+        try {
+            require('./router.js');
+            console.log('Router cargado correctamente');
+        } catch (err) {
+            console.error('Error al cargar router:', err);
+            document.getElementById('appContent').innerHTML = `
+                <div style="padding:40px; text-align:center; color:#c0392b;">
+                    <span class="material-symbols-outlined" style="font-size:48px;">error</span>
+                    <p>Error al cargar la aplicación: ${err.message}</p>
+                    <p style="font-size:14px; color:#666;">Revisa la consola para más detalles.</p>
+                </div>
+            `;
+        }
+    </script>
+
+    <script src="assets/js/html2canvas.min.js"></script>
+    <script src="assets/js/jspdf.umd.min.js"></script>
+    <script>
+    window.updateUserData = function(user) {
+        window.userData = user;
+        const userNameEl = document.getElementById('userName');
+        if (userNameEl) {
+            userNameEl.textContent = user.nombre_admin || 'Administrador';
+        }
+        const avatarEl = document.getElementById('userAvatar');
+        if (avatarEl) {
+            const initials = (user.nombre_admin || 'A').split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+            avatarEl.textContent = initials;
+        }
+    };
+
+    try {
+        const { ipcRenderer } = require('electron');
+        ipcRenderer.invoke('get-user').then((user) => {
+            if (user && !window.userData) {
+                window.updateUserData(user);
+            }
+        });
+    } catch (e) {
+        console.warn('No se pudo obtener usuario:', e);
+    }
+
+    try {
+        require('./router.js');
+        console.log('Router cargado correctamente');
+    } catch (err) {
+        console.error('Error al cargar router:', err);
+        document.getElementById('appContent').innerHTML = `
+            <div style="padding:40px; text-align:center; color:#c0392b;">
+                <span class="material-symbols-outlined" style="font-size:48px;">error</span>
+                <p>Error al cargar la aplicación: ${err.message}</p>
+                <p style="font-size:14px; color:#666;">Revisa la consola para más detalles.</p>
+            </div>
+        `;
+    }
+</script>
+
+    <style>
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .top-header { justify-content: space-between; }
+        #currentDateTime { font-size: 13px; opacity: 0.7; }
+    </style>
+    
+</body>
+</html>

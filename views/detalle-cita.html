@@ -1,0 +1,103 @@
+<div class="page-header">
+    <div class="header-titles">
+        <h1 class="page-title">Detalle de Cita</h1>
+        <p class="page-subtitle" id="citaSubtitle">Cargando...</p>
+    </div>
+    <div class="header-actions">
+        <a href="#" data-view="citas" class="btn btn-secondary">
+            <span class="material-symbols-outlined">arrow_back</span>
+            Volver a Citas
+        </a>
+        <a href="#" data-view="registro-seguimiento" data-id="" class="btn btn-secondary" id="btnSeguimiento">
+            <span class="material-symbols-outlined">track_changes</span>
+            Nuevo Seguimiento
+        </a>
+        <button class="btn btn-primary" id="btnEditarCita">
+            <span class="material-symbols-outlined">edit</span>
+            Editar Cita
+        </button>
+    </div>
+</div>
+
+<div class="workspace-grid cols-3">
+
+    <article class="card card-patient">
+        <div id="patientAvatar" class="patient-avatar" style="background:var(--color-primary-light);border-radius:50%;width:96px;height:96px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;margin:0 auto 12px;color:var(--color-primary);">?</div>
+        <h3 class="patient-name" id="patientName">—</h3>
+        <p class="patient-since" id="patientSince">—</p>
+        <div class="patient-details" id="patientDetails"></div>
+        <a href="#" data-view="expediente" data-id="" class="btn btn-secondary full-width" id="btnExpediente">
+            <span class="material-symbols-outlined">person</span>
+            Ver Expediente
+        </a>
+    </article>
+
+    <div class="span-2 stack">
+
+        <article class="card">
+            <div class="card-header-flex">
+                <div>
+                    <span class="section-tag">HORARIO Y FECHA</span>
+                    <h2 class="appointment-time" id="appointmentDateTime">
+                        <span class="material-symbols-outlined">event</span>
+                        <span id="fechaHoraDisplay">—</span>
+                    </h2>
+                </div>
+                <span class="badge" id="badgeEstado">—</span>
+            </div>
+
+            <span class="section-tag mt-16">CAMBIAR ESTADO RÁPIDAMENTE</span>
+            <div class="status-grid" id="statusGrid">
+            </div>
+        </article>
+
+        <article class="card">
+            <h3 class="card-title">
+                <span class="material-symbols-outlined icon-title">clinical_notes</span>
+                Contexto de la Cita
+            </h3>
+            <div class="workspace-grid cols-2">
+                <div>
+                    <span class="section-tag">MOTIVO DE CONSULTA</span>
+                    <p class="body-text" id="motivoDisplay">—</p>
+                </div>
+                <div class="inner-box">
+                    <span class="section-tag">ÚLTIMOS RESULTADOS</span>
+                    <div class="metric-inline" id="ultimosResultados">
+                        <span class="metric-val">—</span>
+                        <span class="metric-sub">—</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+    <article class="card span-2">
+        <div class="card-header-flex">
+            <h3 class="card-title">
+                <span class="material-symbols-outlined icon-title">edit_note</span>
+                Notas Rápidas
+            </h3>
+        </div>
+        <textarea class="form-textarea" id="notasTextarea" placeholder="Escribe aquí observaciones rápidas..."></textarea>
+        <div class="action-row">
+            <button class="btn btn-primary" id="btnGuardarNota">
+                <span class="material-symbols-outlined">save</span>
+                Guardar Nota
+            </button>
+            
+            <input type="file" id="inputAdjunto" style="display: none;">
+        </div>
+    </article>
+
+    <article class="card">
+        <h3 class="card-title mb-16">
+            <span class="material-symbols-outlined icon-title">history</span>
+            Historial Reciente
+        </h3>
+        <div class="history-list" id="historyList">
+        </div>
+    </article>
+
+</div>

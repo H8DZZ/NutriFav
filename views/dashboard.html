@@ -1,0 +1,39 @@
+<section class="welcome-section">
+    <div class="welcome-text">
+        <h1 class="welcome-heading">Hola, Dra. Elena</h1>
+        <p class="welcome-subtext">Este es tu resumen clínico para hoy.</p>
+    </div>
+    <div class="action-buttons">
+        <a href="#" data-view="expediente" data-id="nuevo" class="btn btn-secondary">
+            <span class="material-symbols-outlined">person_add</span>
+            Nuevo Paciente
+        </a>
+        <button class="btn btn-primary" id="btnNuevaCita">
+            <span class="material-symbols-outlined">add_circle</span>
+            Nueva Cita
+        </button>
+    </div>
+</section>
+
+<section class="stats-grid" id="statsContainer"></section>
+
+<section class="card section-card">
+    <div class="card-header">
+        <h2>Próximas Citas</h2>
+        <a href="#" data-view="citas" class="link-action">Ver todas</a>
+    </div>
+    <div class="appointments-list" id="appointmentsList"></div>
+</section>
+
+<section class="card section-card">
+    <div class="card-header">
+        <h2 class="title-with-icon">
+            <span class="material-symbols-outlined">checklist</span>
+            Tareas Pendientes
+        </h2>
+        <button class="btn-icon-add" id="btnOpenTaskModal">
+            <span class="material-symbols-outlined">add</span>
+        </button>
+    </div>
+    <ul class="task-list" id="taskList"></ul>
+</section>

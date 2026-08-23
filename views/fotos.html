@@ -1,0 +1,51 @@
+<div class="content-body">
+
+    <div class="page-header">
+        <div>
+            <p class="header-subtitle">Galería del Paciente</p>
+            <h2 class="page-title" id="pacienteNombre">—</h2>
+        </div>
+        <div class="header-actions">
+            <div class="selection-bar" id="selectionBar">
+                <span class="counter">Seleccionadas: <strong id="selectedCount">0</strong>/2</span>
+                <button class="btn-compare" id="btnCompare" disabled>
+                    <span class="material-symbols-outlined">compare_arrows</span>
+                    Comparar
+                </button>
+            </div>
+            <button class="btn btn-primary" id="btnSubirFotos">
+                <span class="material-symbols-outlined">cloud_upload</span>
+                Subir Fotos
+            </button>
+        </div>
+    </div>
+
+    <div id="galleryContainer">
+    </div>
+
+    <div class="modal-overlay hidden" id="photoModal">
+        <button class="modal-close" id="modalCloseBtn">
+            <span class="material-symbols-outlined icon-large">close</span>
+        </button>
+        <img class="modal-img" id="modalImg" alt="Vista completa de progreso" src="">
+        <div class="modal-actions">
+            <button class="btn-modal-glass" id="btnDescargar">
+                <span class="material-symbols-outlined">download</span> Descargar
+            </button>
+        </div>
+    </div>
+
+    <div class="modal-compare" id="compareModal">
+        <div class="compare-container">
+            <div class="compare-header">
+                <h3>Comparación de Progreso</h3>
+                <button class="compare-close" id="compareCloseBtn">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="compare-grid" id="compareGrid">
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,74 @@
+<div class="content-body">
+
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Listado General de Citas</h1>
+            <p class="page-description">Gestiona y supervisa todas las consultas programadas.</p>
+        </div>
+        <button class="btn btn-primary" id="btnNuevaCita">
+            <span class="material-symbols-outlined">add</span>
+            Nueva Cita
+        </button>
+    </div>
+
+    <section class="summary-cards" id="summaryCards">
+    </section>
+
+    <div class="card filters-card">
+        <div class="filter-group flex-1">
+            <label class="filter-label">Buscar Paciente</label>
+            <div class="input-icon-wrapper">
+                <span class="material-symbols-outlined input-icon">search</span>
+                <input class="form-input" placeholder="Buscar por nombre..." type="text" id="patientSearch">
+            </div>
+        </div>
+        <div class="filter-group w-64">
+            <label class="filter-label">Fecha Desde</label>
+            <div class="input-icon-wrapper">
+                <span class="material-symbols-outlined input-icon">calendar_month</span>
+                <input class="form-input" type="date" id="fechaDesde">
+            </div>
+        </div>
+        <div class="filter-group w-64">
+            <label class="filter-label">Fecha Hasta</label>
+            <div class="input-icon-wrapper">
+                <span class="material-symbols-outlined input-icon">calendar_month</span>
+                <input class="form-input" type="date" id="fechaHasta">
+            </div>
+        </div>
+        <div class="filter-group w-48">
+        <label class="filter-label">Estado</label>
+        <select class="form-select" id="statusFilter">
+            <option value="all">Todos los Estados</option>
+            <option value="CONFIRMADO">Confirmada</option>
+            <option value="PENDIENTE">Pendiente</option>
+            <option value="ATENDIDA">Atendida</option>
+            <option value="INASISTENCIA">Inasistencia</option>
+            <option value="CANCELADO">Cancelada</option>
+    </select>
+</div>
+    </div>
+
+    <div class="card table-card">
+        <div class="table-responsive custom-scrollbar">
+            <table class="appointments-table">
+                <thead>
+                    <tr>
+                        <th>PACIENTE</th>
+                        <th>FECHA Y HORA</th>
+                        <th>ESTADO</th>
+                        <th class="text-center">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody id="appointmentsBody">
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination-bar">
+            <p class="pagination-info" id="paginationInfo">Mostrando 0 entradas</p>
+            <div class="pagination-controls" id="paginationControls">
+            </div>
+        </div>
+    </div>
+
+</div>

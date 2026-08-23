@@ -1,0 +1,403 @@
+<section class="welcome-section">
+    <div class="patient-header-info">
+        <div class="patient-avatar-badge">
+            <span class="material-symbols-outlined">person</span>
+        </div>
+        <div>
+            <h1 class="welcome-heading" id="pacienteNombre">—</h1>
+            <div class="patient-meta">
+                <span class="status-pill status-confirmed" id="pacienteExpediente">—</span>
+                <span class="text-muted" id="pacienteUltimaConsulta">—</span>
+            </div>
+        </div>
+    </div>
+    <div class="action-buttons no-print">
+        <button class="btn btn-outline" id="btnImprimir">
+            <span class="material-symbols-outlined">print</span>
+            Imprimir Expediente
+        </button>
+    </div>
+</section>
+
+<form id="clinicalHistoryForm">
+
+
+    <section class="card form-card">
+        <div class="card-header-title">
+            <span class="material-symbols-outlined icon-main">person_search</span>
+            <h2>1. Información del Paciente</h2>
+        </div>
+
+        <div class="grid grid-col-6">
+            <div class="span-6">
+                <label class="label-base">Nombre Completo</label>
+                <input class="input-base" type="text" id="inputNombre" placeholder="Nombre completo">
+            </div>
+            <div class="span-2">
+                <label class="label-base">Edad</label>
+                <input class="input-base" type="number" id="inputEdad" placeholder="0">
+            </div>
+            <div class="span-4">
+                <label class="label-base">Sexo</label>
+                <div class="radio-group" id="sexoGroup">
+                    <label class="radio-label">
+                        <input type="radio" name="sexo" value="Masculino">
+                        <span>Masculino</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="sexo" value="Femenino">
+                        <span>Femenino</span>
+                    </label>
+                </div>
+            </div>
+            <div class="span-3">
+                <label class="label-base">Celular</label>
+                <input class="input-base" type="tel" id="inputCelular" placeholder="+52 55 1234 5678">
+            </div>
+            <div class="span-3">
+                <label class="label-base">Email</label>
+                <input class="input-base" type="email" id="inputEmail" placeholder="correo@ejemplo.com">
+            </div>
+            <div class="span-6">
+                <label class="label-base">Dirección</label>
+                <input class="input-base" type="text" id="inputDireccion" placeholder="Calle, número, colonia, ciudad...">
+            </div>
+        </div>
+    </section>
+
+    <section class="card form-card">
+        <div class="card-header-title">
+            <span class="material-symbols-outlined icon-main">spa</span>
+            <h2>2. Antecedentes Personales No Patológicos</h2>
+        </div>
+
+        <div class="grid grid-col-2">
+            <div>
+                <label class="label-base">Alcoholismo</label>
+                <input class="input-base" type="text" id="inputAlcoholismo" placeholder="Frecuencia / Cantidad">
+            </div>
+            <div>
+                <label class="label-base">Tabaquismo</label>
+                <input class="input-base" type="text" id="inputTabaquismo" placeholder="Cigarrillos al día / Tiempo">
+            </div>
+            <div>
+                <label class="label-base">Drogas</label>
+                <input class="input-base" type="text" id="inputDrogas" placeholder="Sustancias / Frecuencia">
+            </div>
+            <div>
+                <label class="label-base">Otros</label>
+                <input class="input-base" type="text" id="inputOtrosNoPat" placeholder="Otras observaciones relevantes">
+            </div>
+        </div>
+    </section>
+
+    <section class="card form-card">
+        <div class="card-header-title">
+            <span class="material-symbols-outlined icon-main">medical_services</span>
+            <h2>3. Antecedentes Personales Patológicos</h2>
+        </div>
+
+        <p class="section-instruction">Seleccionar si presenta:</p>
+
+        <div class="grid grid-col-3 mb-16" id="enfermedadesGroup">
+            <label class="checkbox-container">
+                <input type="checkbox" value="Diabetes">
+                <span class="checkbox-text">Diabetes</span>
+            </label>
+            <label class="checkbox-container">
+                <input type="checkbox" value="Hipertensión">
+                <span class="checkbox-text">Hipertensión</span>
+            </label>
+            <label class="checkbox-container">
+                <input type="checkbox" value="Enfermedad Renal">
+                <span class="checkbox-text">Enfermedad Renal</span>
+            </label>
+            <label class="checkbox-container">
+                <input type="checkbox" value="Gastritis">
+                <span class="checkbox-text">Gastritis</span>
+            </label>
+            <label class="checkbox-container">
+                <input type="checkbox" value="Colitis">
+                <span class="checkbox-text">Colitis</span>
+            </label>
+            <label class="checkbox-container">
+                <input type="checkbox" value="Otros">
+                <span class="checkbox-text">Otros (especificar)</span>
+            </label>
+        </div>
+
+        <div class="grid grid-col-1">
+            <div>
+                <label class="label-base">Antecedentes Heredofamiliares</label>
+                <textarea class="input-base textarea-sm" id="inputHeredofamiliares" placeholder="Padres, abuelos, hermanos (Diabetes, HTA, Cáncer, etc.)..."></textarea>
+            </div>
+            <div>
+                <label class="label-base">Cirugías</label>
+                <textarea class="input-base textarea-sm" id="inputCirugias" placeholder="Procedimientos previos y fechas aproximadas..."></textarea>
+            </div>
+            <div>
+                <label class="label-base">Alergias o Intolerancias</label>
+                <textarea class="input-base textarea-sm" id="inputAlergias" placeholder="Medicamentos, alimentos o sustancias..."></textarea>
+            </div>
+        </div>
+    </section>
+
+    <section class="card form-card">
+        <div class="card-header-title">
+            <span class="material-symbols-outlined icon-main">female</span>
+            <h2>4. Antecedentes Gineco-Obstétricos</h2>
+        </div>
+
+        <div class="grid grid-col-3 divider-cols">
+            <div class="form-subgroup">
+                <h3 class="subgroup-title">Datos Ginecológicos</h3>
+                <div class="space-y">
+                    <div>
+                        <label class="label-base">FUM (Última Menstruación)</label>
+                        <input class="input-base" type="date" id="inputFUM">
+                    </div>
+                    <div>
+                        <label class="label-base">FPM (Probable Menstruación)</label>
+                        <input class="input-base" type="date" id="inputFPM">
+                    </div>
+                    <div>
+                        <label class="label-base">Menarca</label>
+                        <input class="input-base" type="text" id="inputMenarca" placeholder="Edad de inicio">
+                    </div>
+                    <div>
+                        <label class="label-base">Anticonceptivo</label>
+                        <input class="input-base" type="text" id="inputAnticonceptivo" placeholder="Tipo y tiempo de uso">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-subgroup">
+                <div class="subgroup-header-check">
+                    <h3 class="subgroup-title">Embarazo</h3>
+                    <label class="checkbox-container" style="margin-left: auto;">
+                        <input type="checkbox" id="checkboxEmbarazo">
+                        <span class="checkbox-text">Sí</span>
+                    </label>
+                </div>
+
+                <div class="embarazo-fields" style="display: none; margin-top: 8px; padding: 8px 0;">
+                    <div class="grid grid-col-2" style="gap: 8px;">
+                        <div>
+                            <label class="label-base">SDG (Semanas)</label>
+                            <input class="input-base" type="text" id="inputSDG" placeholder="Ej: 38+2">
+                        </div>
+                        <div>
+                            <label class="label-base">Trimestre</label>
+                            <select class="input-base" id="inputTrimestre">
+                                <option value="">Seleccionar</option>
+                                <option value="1">1er trimestre</option>
+                                <option value="2">2do trimestre</option>
+                                <option value="3">3er trimestre</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="label-base">Gestas</label>
+                            <input class="input-base" type="number" id="inputGestas" min="0" value="0">
+                        </div>
+                        <div>
+                            <label class="label-base">Partos</label>
+                            <input class="input-base" type="number" id="inputPartos" min="0" value="0">
+                        </div>
+                        <div>
+                            <label class="label-base">Cesáreas</label>
+                            <input class="input-base" type="number" id="inputCesareas" min="0" value="0">
+                        </div>
+                        <div>
+                            <label class="label-base">Abortos</label>
+                            <input class="input-base" type="number" id="inputAbortos" min="0" value="0">
+                        </div>
+                        <div style="grid-column: 1 / -1;">
+                            <label class="label-base">Observaciones obstétricas</label>
+                            <textarea class="input-base textarea-sm" id="inputObsEmbarazo" placeholder="Ej: embarazo gemelar, antecedente de preeclampsia, diabetes gestacional, etc."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-subgroup">
+                <div class="subgroup-header-check">
+                    <h3 class="subgroup-title">Climaterio / Menopausia</h3>
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="checkboxClimaterio">
+                        <span class="checkbox-text">Sí</span>
+                    </label>
+                </div>
+                <div>
+                    <label class="label-base">Terapia Hormonal</label>
+                    <textarea class="input-base textarea-md" id="inputTerapiaHormonal" placeholder="Especificar tratamiento y dosis si aplica..."></textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="card form-card">
+        <div class="card-header-title">
+            <span class="material-symbols-outlined icon-main">fitness_center</span>
+            <h2>5. Actividad Física</h2>
+        </div>
+
+        <div class="grid grid-col-2">
+            <div>
+                <label class="label-base">Tipo</label>
+                <input class="input-base" type="text" id="inputActividadTipo" placeholder="Ej: Correr, Gimnasio, Natación...">
+            </div>
+            <div>
+                <label class="label-base">Frecuencia</label>
+                <input class="input-base" type="text" id="inputActividadFrecuencia" placeholder="Ej: 3 veces por semana">
+            </div>
+            <div>
+                <label class="label-base">Duración</label>
+                <input class="input-base" type="text" id="inputActividadDuracion" placeholder="Ej: 45 minutos">
+            </div>
+            <div>
+                <label class="label-base">Tiempo de evolución</label>
+                <input class="input-base" type="text" id="inputActividadEvolucion" placeholder="Ej: Hace 6 meses">
+            </div>
+        </div>
+    </section>
+
+
+    <section class="card form-card">
+        <div class="card-header-title">
+            <span class="material-symbols-outlined icon-main">lab_research</span>
+            <h2>6. Indicadores Bioquímicos</h2>
+        </div>
+
+        <div class="mb-16">
+            <label class="checkbox-container">
+                <input type="checkbox" id="checkLabs">
+                <span class="checkbox-text"><strong>Laboratorios recientes disponibles</strong></span>
+            </label>
+        </div>
+
+        <div>
+            <label class="label-base">Resultados de Laboratorio</label>
+            <textarea class="input-base textarea-md" id="inputLaboratorios" placeholder="Anotar resultados (Glucosa, Perfil de lípidos, Hemoglobina, Biometría, etc.)..."></textarea>
+        </div>
+    </section>
+
+    <section class="card form-card">
+        <div class="card-header-title">
+            <span class="material-symbols-outlined icon-main">restaurant</span>
+            <h2>7. Indicadores Dietéticos</h2>
+        </div>
+
+        <div class="grid grid-col-2 mb-16">
+            <div>
+                <label class="label-base">¿Quién prepara los alimentos?</label>
+                <input class="input-base" type="text" id="inputPreparaAlimentos" placeholder="Ej: Paciente, Familiar, Restaurante...">
+            </div>
+            <div>
+                <label class="label-base">Nivel de Apetito</label>
+                <div class="radio-group">
+                    <label class="radio-label"><input type="radio" name="apetito" value="Bueno"> <span>Bueno</span></label>
+                    <label class="radio-label"><input type="radio" name="apetito" value="Regular"> <span>Regular</span></label>
+                    <label class="radio-label"><input type="radio" name="apetito" value="Malo"> <span>Malo</span></label>
+                </div>
+            </div>
+            <div class="span-2">
+                <label class="label-base">¿A qué hora tiene mayor apetito?</label>
+                <input class="input-base" type="text" id="inputMayorApetito" placeholder="Ej: Por la tarde, noche, al despertar...">
+            </div>
+        </div>
+
+        <div class="grid grid-col-1">
+            <div>
+                <label class="label-base">Alergias o Intolerancias Alimenticias</label>
+                <input class="input-base" type="text" id="inputAlergiasAlimenticias" placeholder="Ej: Lactosa, Mariscos, Frutos secos...">
+            </div>
+            <div>
+                <label class="label-base">Alimentos Preferidos</label>
+                <textarea class="input-base textarea-sm" id="inputAlimentosPreferidos" placeholder="Alimentos que disfruta consumir..."></textarea>
+            </div>
+            <div>
+                <label class="label-base">Alimentos que no agraden o no acostumbre consumir</label>
+                <textarea class="input-base textarea-sm" id="inputAlimentosNoGustan" placeholder="Alimentos rechazados o no habituales..."></textarea>
+            </div>
+            <div>
+                <label class="label-base">Alimentos que le causen malestar</label>
+                <textarea class="input-base textarea-sm" id="inputAlimentosMalestar" placeholder="Ej: Inflamación, acidez, pesadez..."></textarea>
+            </div>
+            <div>
+                <label class="label-base">Complemento o Suplemento</label>
+                <input class="input-base" type="text" id="inputSuplementos" placeholder="Ej: Proteína, Proteína de suero, Vitaminas, Omegas...">
+            </div>
+        </div>
+    </section>
+
+    <section class="card form-card">
+        <div class="card-header-title">
+            <span class="material-symbols-outlined icon-main">target</span>
+            <h2>8. Objetivo</h2>
+        </div>
+
+        <div>
+            <label class="label-base">Objetivo de la consulta o tratamiento nutricional</label>
+            <textarea class="input-base textarea-md" id="inputObjetivo" placeholder="Describir las metas del paciente (Reducción de porcentaje de grasa, ganancia muscular, control patológico, etc.)..."></textarea>
+        </div>
+    </section>
+
+    <section class="card form-card">
+        <div class="card-header-title">
+            <span class="material-symbols-outlined icon-main">history</span>
+            <h2>9. Recordatorio de 24 Horas</h2>
+        </div>
+
+        <div class="form-subgroup mb-16">
+            <h3 class="subgroup-title">Dietas Previas</h3>
+            <div class="grid grid-col-2">
+                <div>
+                    <label class="label-base">¿Ha realizado dietas anteriormente?</label>
+                    <div class="radio-group">
+                        <label class="radio-label"><input type="radio" name="dietas_previas" value="Si"> <span>Sí</span></label>
+                        <label class="radio-label"><input type="radio" name="dietas_previas" value="No"> <span>No</span></label>
+                    </div>
+                </div>
+                <div>
+                    <label class="label-base">¿Cuántas y por cuánto tiempo?</label>
+                    <input class="input-base" type="text" id="inputDietasPrevias" placeholder="Ej: 2 dietas, 3 meses cada una">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-subgroup mb-16">
+            <h3 class="subgroup-title">Hábitos Diarios</h3>
+            <div class="grid grid-col-3">
+                <div>
+                    <label class="label-base">Hora de despertar</label>
+                    <input class="input-base" type="time" id="inputHoraDespertar">
+                </div>
+                <div>
+                    <label class="label-base">Hora de dormir</label>
+                    <input class="input-base" type="time" id="inputHoraDormir">
+                </div>
+                <div>
+                    <label class="label-base">Número de comidas al día</label>
+                    <input class="input-base" type="number" id="inputNumComidas" placeholder="Ej: 3 a 5">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-subgroup">
+            <h3 class="subgroup-title">Alimentación Habitual</h3>
+            <div>
+                <label class="label-base">Descripción de la dieta habitual (24 horas)</label>
+                <textarea class="input-base textarea-lg" id="inputDietaHabitual" placeholder="Describir tiempos de comida, ingredientes, porciones aproximadas y bebidas de un día normal..."></textarea>
+            </div>
+        </div>
+    </section>
+
+</form>
+
+<footer class="bottom-bar no-print">
+    <a href="#" data-view="pacientes" type="button" class="btn btn-text">Cancelar</a>
+    <button type="button" class="btn btn-primary" id="saveBtn">
+        <span class="material-symbols-outlined">save</span>
+        <span>Guardar Expediente</span>
+    </button>
+</footer>

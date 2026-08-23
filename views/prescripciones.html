@@ -1,0 +1,105 @@
+<div class="page-header">
+    <div>
+        <nav class="breadcrumb">
+            <a href="#" data-view="pacientes">Pacientes</a>
+            <span class="material-symbols-outlined">chevron_right</span>
+            <span class="current-page" id="pacienteNombre">Cargando...</span>
+        </nav>
+        <h2 class="page-title">Prescripciones Nutricionales</h2>
+        <p class="page-description" id="pacienteSubtitle">Historial de planes y objetivos para este paciente.</p>
+    </div>
+    <a href="#" data-view="editor-plan" data-id="" class="btn btn-primary" id="btnCrearPrescripcion">
+        <span class="material-symbols-outlined">add_circle</span>
+        Crear Nueva Prescripción
+    </a>
+</div>
+
+<div class="stats-grid" id="statsGrid">
+</div>
+
+<div class="table-container card">
+    <div class="table-controls">
+        <div class="filter-group">
+            <input type="text" id="globalSearch" class="form-input" placeholder="Buscar plan..." style="min-width:180px;">
+        </div>
+        <div class="filter-group">
+            <div class="select-wrapper">
+                <select class="form-select" id="statusFilter">
+                    <option value="all">Todos los estados</option>
+                    <option value="Activo">Activo</option>
+                    <option value="Completado">Completado</option>
+                    <option value="Cancelado">Cancelado</option>
+                </select>
+                <span class="material-symbols-outlined select-arrow">expand_more</span>
+            </div>
+            <div class="select-wrapper">
+                <select class="form-select" id="sortFilter">
+                    <option value="recent">Ordenar por fecha (reciente)</option>
+                    <option value="old">Ordenar por fecha (antiguo)</option>
+                </select>
+                <span class="material-symbols-outlined select-arrow">filter_list</span>
+            </div>
+            <button class="btn-clear-filters" id="clearFilters">Limpiar filtros</button>
+        </div>
+        <p class="results-count" id="resultsCount">Mostrando 0 resultados</p>
+    </div>
+
+    <div class="table-scroll">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Plan Name</th>
+                    <th>Emission Date</th>
+                    <th>Status</th>
+                    <th class="text-right">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination">
+        <button class="pagination-btn pagination-nav" id="prevPage">
+            <span class="material-symbols-outlined">arrow_back</span>
+            Anterior
+        </button>
+        <div class="pagination-numbers" id="paginationNumbers">
+        </div>
+        <button class="pagination-btn pagination-nav" id="nextPage">
+            Siguiente
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+    </div>
+</div>
+
+<div class="bottom-grid">
+    <div class="card summary-card">
+        <div class="patient-avatar-wrapper">
+            <div class="patient-avatar" id="pacienteAvatar" style="background:var(--color-primary-light);border-radius:50%;width:128px;height:128px;display:flex;align-items:center;justify-content:center;font-size:48px;font-weight:700;color:var(--color-primary);margin:0 auto;">?</div>
+        </div>
+        <div class="summary-details">
+            <h3 class="summary-title" id="resumenTitulo">Resumen de Evolución</h3>
+            <p class="summary-text" contenteditable="true" id="resumenEvolucion">
+                <span id="resumenContenido">Cargando...</span>
+                <span class="edit-hint">✏️</span>
+            </p>
+            <div class="metrics-grid" id="resumenMetrics">
+            </div>
+        </div>
+    </div>
+
+    <div class="card notes-card">
+        <h4 class="notes-title">Notas Rápidas</h4>
+        <div class="notes-list" id="notesList">
+        </div>
+        <div class="add-note-form">
+            <input type="text" id="newNoteInput" placeholder="Escribe una nota..." />
+            <button id="addNoteBtn">Agregar</button>
+        </div>
+    </div>
+</div>
+
+<button class="fab-mobile" id="fabMobile">
+    <span class="material-symbols-outlined">add</span>
+</button>

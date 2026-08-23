@@ -1,0 +1,27 @@
+{
+  "name": "nutrifav",
+  "version": "1.0.0",
+  "description": "NutriFav - Clinical Nutrition Management",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --linux --x64",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "devDependencies": {
+    "electron": "27.0.0",
+    "electron-builder": "^24.6.4"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "sqlite3": "^5.1.6"
+  },
+  "build": {
+    "appId": "com.nutrifav.app",
+    "productName": "NutriFav",
+    "linux": {
+      "target": "AppImage",
+      "category": "Utility"
+    }
+  }
+}
